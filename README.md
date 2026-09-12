@@ -17,3 +17,72 @@ Chart.js on the frontend.
   ROI (`Profit / Cost x 100`) calculated per month from the SQL data.
 
 ## Project structure
+analytics_assistant/
+├── app.py # Flask backend: routes, SQL, ML, ratio calcs
+├── requirements.txt
+├── templates/
+│ └── index.html # Dashboard + chat UI
+└── static/
+├── style.css # Dark-mode styling
+└── app.js # Chat logic, KPI loading, Chart.js rendering
+
+
+## Running it locally
+
+```bash
+cd analytics_assistant
+python -m venv venv
+source venv/bin/activate      # on Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+```
+
+Then open **http://127.0.0.1:5000** in your browser.
+
+A `business_data.db` SQLite file will be created automatically on first run,
+seeded with 6 months of sample sales data and 7 sample customers. Delete
+that file if you want to reset the seed data.
+
+## Design notes / honest caveats
+
+A few things worth knowing (and mentioning if asked in an interview):
+
+- **The "NLP parser" is keyword matching**, not a trained language model —
+  it checks for words like "revenue", "roi", "forecast" in the message.
+  This is a legitimate and common lightweight approach for a scoped chatbot,
+  but it's not what most people mean by "NLP" in a research sense. A natural
+  next step would be swapping in a small intent-classification model or a
+  library like spaCy.
+- **The forecast is a simple linear trend line** over 6 data points — good
+  for demonstrating the scikit-learn workflow (`fit` → `predict`), but not
+  a statistically robust forecast. With more historical data you'd want to
+  account for seasonality (e.g., a SARIMA model or Prophet).
+- **`debug=True` is for local development only.** If you ever deploy this
+  (Render, Railway, PythonAnywhere, etc.), turn debug mode off — it exposes
+  an interactive Python console over the network, which is a real security
+  risk.
+- **Customer data is randomly generated** (with a fixed random seed for
+  reproducibility) since no real dataset was provided — swap in real data
+  by editing the `init_db()` function in `app.py`.
+
+## Extending it
+
+Easy next steps if you want to go further:
+- Add a `/api/upload` route to let users upload their own CSV of sales data
+  instead of using the seeded SQLite table.
+- Swap the keyword-based parser for a proper intent classifier.
+- Add month-over-month growth rate as another KPI card.
+- Deploy it (e.g., Render or Railway) so you have a live link to share.
+
+## Explaining this project in an interview (STAR method)
+
+- **Situation/Task**: Business managers often need to dig through spreadsheets
+  or wait on analysts to get simple metrics like revenue trends or ROI.
+- **Action**: Built a conversational analytics tool — a Flask backend that
+  parses natural-language questions, queries a SQL database for the relevant
+  metrics, computes financial ratios (Gross Profit Margin, ROI), and runs a
+  scikit-learn linear regression for forecasting. The frontend renders
+  results as interactive Chart.js visualizations alongside KPI summary cards.
+- **Result**: A working prototype that ties together your business/finance
+  background (the *what* — which metrics matter) with a full-stack technical
+  implementation (the *how* — Flask, SQL, pandas, scikit-learn, JS).
