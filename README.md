@@ -37,7 +37,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Then open **http://127.0.0.1:5000** in your browser.
+Then open **https://analytics-assistan.onrender.com/** in your browser.
 
 A `business_data.db` SQLite file will be created automatically on first run,
 seeded with 6 months of sample sales data and 7 sample customers. Delete
@@ -65,14 +65,7 @@ A few things worth knowing (and mentioning if asked in an interview):
   reproducibility) since no real dataset was provided — swap in real data
   by editing the `init_db()` function in `app.py`.
 
-## Extending it
 
-Easy next steps if you want to go further:
-- Add a `/api/upload` route to let users upload their own CSV of sales data
-  instead of using the seeded SQLite table.
-- Swap the keyword-based parser for a proper intent classifier.
-- Add month-over-month growth rate as another KPI card.
-- Deploy it (e.g., Render or Railway) so you have a live link to share.
 
 
   background (the *what* — which metrics matter) with a full-stack technical
