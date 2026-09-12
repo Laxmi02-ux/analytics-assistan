@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Executive Analytics Assistant</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <h1>Financial &amp; Sales Analytics Assistant</h1>
+    <p class="subtitle">Ask a question in plain English to explore revenue, margins, ROI, and customer data.</p>
+  </header>
+
+  <section class="kpi-row" id="kpiRow">
+    <div class="kpi-card">
+      <span class="kpi-label">Total Revenue</span>
+      <span class="kpi-value" id="kpiRevenue">–</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Total Profit</span>
+      <span class="kpi-value" id="kpiProfit">–</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Gross Profit Margin</span>
+      <span class="kpi-value" id="kpiMargin">–</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">ROI</span>
+      <span class="kpi-value" id="kpiRoi">–</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Customer Retention</span>
+      <span class="kpi-value" id="kpiRetention">–</span>
+    </div>
+  </section>
+
+  <main class="main-grid">
+    <div class="dashboard">
+      <h2 id="chartTitle">Revenue Trend</h2>
+      <canvas id="analyticsChart"></canvas>
+    </div>
+
+    <div class="chat-container">
+      <h3>Data Assistant</h3>
+      <div class="chat-box" id="chatBox">
+        <div class="msg bot-msg">Hi! Try: "Show revenue", "What's our ROI?", "Forecast next month", "Top 5 customers", or "Retention rate".</div>
+      </div>
+      <div class="suggestions">
+        <button class="chip" data-msg="Show revenue">Revenue</button>
+        <button class="chip" data-msg="Gross profit margin">Margin</button>
+        <button class="chip" data-msg="What's our ROI?">ROI</button>
+        <button class="chip" data-msg="Forecast next month revenue">Forecast</button>
+        <button class="chip" data-msg="Top 5 customers">Top Customers</button>
+        <button class="chip" data-msg="Retention rate">Retention</button>
+      </div>
+      <div class="input-row">
+        <input type="text" id="userInput" placeholder="Ask a question..." />
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
