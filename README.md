@@ -74,15 +74,6 @@ Easy next steps if you want to go further:
 - Add month-over-month growth rate as another KPI card.
 - Deploy it (e.g., Render or Railway) so you have a live link to share.
 
-## Explaining this project in an interview (STAR method)
 
-- **Situation/Task**: Business managers often need to dig through spreadsheets
-  or wait on analysts to get simple metrics like revenue trends or ROI.
-- **Action**: Built a conversational analytics tool — a Flask backend that
-  parses natural-language questions, queries a SQL database for the relevant
-  metrics, computes financial ratios (Gross Profit Margin, ROI), and runs a
-  scikit-learn linear regression for forecasting. The frontend renders
-  results as interactive Chart.js visualizations alongside KPI summary cards.
-- **Result**: A working prototype that ties together your business/finance
   background (the *what* — which metrics matter) with a full-stack technical
   implementation (the *how* — Flask, SQL, pandas, scikit-learn, JS).
